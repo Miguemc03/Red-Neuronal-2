@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='css/template.css') }}"
+    />
+    <title>Formulario de introduccion de datos</title>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Clasificador de numeros</h2>
+
+      {% block content %} {% if prediction %}
+      <p>Es el numero {{prediction}}</p> {% else %}
+      <form action="{{url_for('predict')}}" method="get">
+        <div class="form-group">
+          <input
+            type="file"
+            name="image"
+            id="image"
+            required
+          />
+        </div>
+        
+        <input type="submit" value="Enviar datos" />
+      </form>
+      {% endif %} {% endblock %}
+    </div>
+  </body>
+</html>
